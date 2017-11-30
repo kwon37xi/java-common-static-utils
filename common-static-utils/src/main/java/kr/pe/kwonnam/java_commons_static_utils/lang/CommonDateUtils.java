@@ -1,7 +1,9 @@
 package kr.pe.kwonnam.java_commons_static_utils.lang;
 
+import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * static import friendly java.util.Date Utils
@@ -144,5 +146,69 @@ public abstract class CommonDateUtils {
         calendar.set(Calendar.SECOND, 59);
         calendar.set(Calendar.MILLISECOND, 999);
         return calendar.getTime();
+    }
+
+    public static Date datePlusYears(long amount) {
+        return null;
+    }
+
+    public static Date datePlusMonths(long amount) {
+        return null;
+    }
+
+    public static Date datePlusDays(long amount) {
+        return null;
+    }
+
+    public static Date datePlusHours(long amount) {
+        return null;
+    }
+
+    public static Date datePlusMinutes(long amount) {
+        return null;
+    }
+
+    public static Date datePlusSeconds(long amount) {
+        return null;
+    }
+
+    public static Date datePlusMilliseconds(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusYears(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusMonths(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusDays(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusHours(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusMinutes(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusSeconds(long amount) {
+        return null;
+    }
+
+    public static Date dateMinusMilliseconds(long amount) {
+        return null;
+    }
+
+    public static Date datePlus(long amount, int calendarField) {
+        return null;
+    }
+
+    public static Date dateMinus(long amount, int calendarField) {
+        return null;
     }
 }
