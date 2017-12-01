@@ -1,8 +1,8 @@
 package kr.pe.kwonnam.java_commons_static_utils.lang;//import static org.junit.Assert.*;
 
-import kr.pe.kwonnam.java_commons_static_utils.lang.CommonDateUtils;
 import org.junit.Test;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,5 +44,24 @@ public class CommonDateUtilsTest {
     @Test
     public void dateToEndOfDay_null_for_null() throws Exception {
         assertThat(CommonDateUtils.dateToEndOfDay(null)).isEqualTo(null);
+    }
+
+    @Test
+    public void datePlus() {
+        Date date = CommonDateUtils.dateOf(2000, 1, 1);
+        assertThat(CommonDateUtils.datePlus(date, 1, Calendar.YEAR)).isEqualTo("2001-01-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 2, Calendar.MONTH)).isEqualTo("2000-03-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 10, Calendar.DAY_OF_MONTH)).isEqualTo("2000-01-11T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 15, Calendar.HOUR_OF_DAY)).isEqualTo("2000-01-01T15:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 21, Calendar.MINUTE)).isEqualTo("2000-01-01T00:21:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 30, Calendar.SECOND)).isEqualTo("2000-01-01T00:00:30.000");
+        assertThat(CommonDateUtils.datePlus(date, 123, Calendar.MILLISECOND)).isEqualTo("2000-01-01T00:00:00.123");
+
+        assertThat(CommonDateUtils.datePlus(date, 13, Calendar.MONTH)).as("months overflow").isEqualTo("2001-02-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 35, Calendar.DAY_OF_MONTH)).as("days overflow").isEqualTo("2000-02-05T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, 70, Calendar.SECOND)).as("seconds overflow").isEqualTo("2000-01-01T00:01:10.000");
+
+        assertThat(CommonDateUtils.datePlus(date, -1, Calendar.MONTH)).as("minus months").isEqualTo("1999-12-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlus(date, -3, Calendar.DAY_OF_MONTH)).as("minus days").isEqualTo("1999-12-29T00:00:00.000");
     }
 }

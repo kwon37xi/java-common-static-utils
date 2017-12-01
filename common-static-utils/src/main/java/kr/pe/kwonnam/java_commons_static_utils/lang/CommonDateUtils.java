@@ -1,9 +1,7 @@
 package kr.pe.kwonnam.java_commons_static_utils.lang;
 
-import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * static import friendly java.util.Date Utils
@@ -204,8 +202,11 @@ public abstract class CommonDateUtils {
         return null;
     }
 
-    public static Date datePlus(long amount, int calendarField) {
-        return null;
+    public static Date datePlus(Date date, int amount, int calendarField) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(calendarField, amount);
+        return calendar.getTime();
     }
 
     public static Date dateMinus(long amount, int calendarField) {
