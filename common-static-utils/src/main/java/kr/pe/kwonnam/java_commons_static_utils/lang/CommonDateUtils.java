@@ -146,59 +146,59 @@ public abstract class CommonDateUtils {
         return calendar.getTime();
     }
 
-    public static Date datePlusYears(long amount) {
+    public static Date datePlusYears(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusMonths(long amount) {
+    public static Date datePlusMonths(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusDays(long amount) {
+    public static Date datePlusDays(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusHours(long amount) {
+    public static Date datePlusHours(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusMinutes(long amount) {
+    public static Date datePlusMinutes(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusSeconds(long amount) {
+    public static Date datePlusSeconds(Date date, int amount) {
         return null;
     }
 
-    public static Date datePlusMilliseconds(long amount) {
+    public static Date datePlusMilliseconds(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusYears(long amount) {
+    public static Date dateMinusYears(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusMonths(long amount) {
+    public static Date dateMinusMonths(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusDays(long amount) {
+    public static Date dateMinusDays(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusHours(long amount) {
+    public static Date dateMinusHours(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusMinutes(long amount) {
+    public static Date dateMinusMinutes(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusSeconds(long amount) {
+    public static Date dateMinusSeconds(Date date, int amount) {
         return null;
     }
 
-    public static Date dateMinusMilliseconds(long amount) {
+    public static Date dateMinusMilliseconds(Date date, int amount) {
         return null;
     }
 
