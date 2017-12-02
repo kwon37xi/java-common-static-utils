@@ -1,4 +1,4 @@
-package kr.pe.kwonnam.java_commons_static_utils.lang;//import static org.junit.Assert.*;
+package kr.pe.kwonnam.java_commons_static_utils.lang;
 
 import org.junit.Test;
 
