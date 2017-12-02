@@ -65,7 +65,7 @@ public class CommonDateUtilsTest {
         assertThat(CommonDateUtils.datePlus(date, -1, Calendar.MONTH)).as("minus months").isEqualTo("1999-12-01T00:00:00.000");
         assertThat(CommonDateUtils.datePlus(date, -3, Calendar.DAY_OF_MONTH)).as("minus days").isEqualTo("1999-12-29T00:00:00.000");
     }
-    
+
     @Test
     public void dateMinus() {
         Date date = CommonDateUtils.dateOf(2000, 1, 1);
@@ -84,5 +84,42 @@ public class CommonDateUtilsTest {
 
         assertThat(CommonDateUtils.dateMinus(date, -1, Calendar.MONTH)).as("minus months").isEqualTo("2000-02-01T00:00:00.000");
         assertThat(CommonDateUtils.dateMinus(date, -3, Calendar.DAY_OF_MONTH)).as("minus days").isEqualTo("2000-01-04T00:00:00.000");
+    }
+
+    @Test
+    public void datePlusFields() {
+        Date date = CommonDateUtils.dateOf(2000, 1, 1);
+
+        assertThat(CommonDateUtils.datePlusYears(date, 1)).isEqualTo("2001-01-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlusMonths(date, 2)).isEqualTo("2000-03-01T00:00:00.000");
+        assertThat(CommonDateUtils.datePlusDays(date, 3)).isEqualTo("2000-01-04T00:00:00.000");
+        assertThat(CommonDateUtils.datePlusHours(date, 4)).isEqualTo("2000-01-01T04:00:00.000");
+        assertThat(CommonDateUtils.datePlusMinutes(date, 5)).isEqualTo("2000-01-01T00:05:00.000");
+        assertThat(CommonDateUtils.datePlusSeconds(date, 6)).isEqualTo("2000-01-01T00:00:06.000");
+        assertThat(CommonDateUtils.datePlusMilliseconds(date, 123)).isEqualTo("2000-01-01T00:00:00.123");
+    }
+
+
+    @Test
+    public void dateMinusFields() {
+        Date date = CommonDateUtils.dateOf(2000, 1, 1);
+
+        assertThat(CommonDateUtils.dateMinusYears(date, 1)).isEqualTo("1999-01-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinusMonths(date, 2)).isEqualTo("1999-11-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinusDays(date, 3)).isEqualTo("1999-12-29T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinusHours(date, 4)).isEqualTo("1999-12-31T20:00:00.000");
+        assertThat(CommonDateUtils.dateMinusMinutes(date, 5)).isEqualTo("1999-12-31T23:55:00.000");
+        assertThat(CommonDateUtils.dateMinusSeconds(date, 6)).isEqualTo("1999-12-31T23:59:54.000");
+        assertThat(CommonDateUtils.dateMinusMilliseconds(date, 123)).isEqualTo("1999-12-31T23:59:59.877");
+    }
+
+    @Test
+    public void datePlus_null_for_null() {
+        assertThat(CommonDateUtils.datePlus(null, 1, Calendar.YEAR)).isNull();
+    }
+
+    @Test
+    public void dateMinus_null_for_null() {
+        assertThat(CommonDateUtils.dateMinus(null, 1, Calendar.YEAR)).isNull();
     }
 }

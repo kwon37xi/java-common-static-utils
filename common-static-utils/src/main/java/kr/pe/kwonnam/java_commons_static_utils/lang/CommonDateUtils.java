@@ -147,70 +147,74 @@ public abstract class CommonDateUtils {
     }
 
     public static Date datePlusYears(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.YEAR);
     }
 
     public static Date datePlusMonths(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.MONTH);
     }
 
     public static Date datePlusDays(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.DAY_OF_MONTH);
     }
 
     public static Date datePlusHours(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.HOUR_OF_DAY);
     }
 
     public static Date datePlusMinutes(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.MINUTE);
     }
 
     public static Date datePlusSeconds(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.SECOND);
     }
 
     public static Date datePlusMilliseconds(Date date, int amount) {
-        return null;
+        return datePlus(date, amount, Calendar.MILLISECOND);
     }
 
     public static Date dateMinusYears(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.YEAR);
     }
 
     public static Date dateMinusMonths(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.MONTH);
     }
 
     public static Date dateMinusDays(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.DAY_OF_MONTH);
     }
 
     public static Date dateMinusHours(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.HOUR_OF_DAY);
     }
 
     public static Date dateMinusMinutes(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.MINUTE);
     }
 
     public static Date dateMinusSeconds(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.SECOND);
     }
 
     public static Date dateMinusMilliseconds(Date date, int amount) {
-        return null;
+        return dateMinus(date, amount, Calendar.MILLISECOND);
     }
 
     /**
      * add value to date object.
      *
-     * @param date date object
-     * @param amount add amount
+     * @param date          date object
+     * @param amount        add amount
      * @param calendarField {@link Calendar#YEAR}, {@link Calendar#MONTH}, {@link Calendar#DAY_OF_MONTH}, {@link Calendar#HOUR_OF_DAY}, {@link Calendar#MINUTE}, {@link Calendar#SECOND}, {@link Calendar#MILLISECOND},
-     * @return new Date object with added amount
+     * @return new Date object with added amount, return null when date object is null.
      */
     public static Date datePlus(Date date, int amount, int calendarField) {
+        if (date == null) {
+            return null;
+        }
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(calendarField, amount);
@@ -220,10 +224,10 @@ public abstract class CommonDateUtils {
     /**
      * subtract value from date object.
      *
-     * @param date date object
-     * @param amount subtract amount
+     * @param date          date object
+     * @param amount        subtract amount
      * @param calendarField {@link Calendar#YEAR}, {@link Calendar#MONTH}, {@link Calendar#DAY_OF_MONTH}, {@link Calendar#HOUR_OF_DAY}, {@link Calendar#MINUTE}, {@link Calendar#SECOND}, {@link Calendar#MILLISECOND},
-     * @return new Date object with subtracted amount
+     * @return new Date object with subtracted amount, return null when date object is null.
      */
     public static Date dateMinus(Date date, int amount, int calendarField) {
         return datePlus(date, -amount, calendarField);
