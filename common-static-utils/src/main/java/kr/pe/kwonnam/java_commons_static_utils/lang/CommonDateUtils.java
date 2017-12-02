@@ -202,6 +202,14 @@ public abstract class CommonDateUtils {
         return null;
     }
 
+    /**
+     * add value to date object.
+     *
+     * @param date date object
+     * @param amount add amount
+     * @param calendarField {@link Calendar#YEAR}, {@link Calendar#MONTH}, {@link Calendar#DAY_OF_MONTH}, {@link Calendar#HOUR_OF_DAY}, {@link Calendar#MINUTE}, {@link Calendar#SECOND}, {@link Calendar#MILLISECOND},
+     * @return new Date object with added amount
+     */
     public static Date datePlus(Date date, int amount, int calendarField) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -209,7 +217,15 @@ public abstract class CommonDateUtils {
         return calendar.getTime();
     }
 
-    public static Date dateMinus(long amount, int calendarField) {
-        return null;
+    /**
+     * subtract value from date object.
+     *
+     * @param date date object
+     * @param amount subtract amount
+     * @param calendarField {@link Calendar#YEAR}, {@link Calendar#MONTH}, {@link Calendar#DAY_OF_MONTH}, {@link Calendar#HOUR_OF_DAY}, {@link Calendar#MINUTE}, {@link Calendar#SECOND}, {@link Calendar#MILLISECOND},
+     * @return new Date object with subtracted amount
+     */
+    public static Date dateMinus(Date date, int amount, int calendarField) {
+        return datePlus(date, -amount, calendarField);
     }
 }

@@ -49,6 +49,7 @@ public class CommonDateUtilsTest {
     @Test
     public void datePlus() {
         Date date = CommonDateUtils.dateOf(2000, 1, 1);
+
         assertThat(CommonDateUtils.datePlus(date, 1, Calendar.YEAR)).isEqualTo("2001-01-01T00:00:00.000");
         assertThat(CommonDateUtils.datePlus(date, 2, Calendar.MONTH)).isEqualTo("2000-03-01T00:00:00.000");
         assertThat(CommonDateUtils.datePlus(date, 10, Calendar.DAY_OF_MONTH)).isEqualTo("2000-01-11T00:00:00.000");
@@ -63,5 +64,25 @@ public class CommonDateUtilsTest {
 
         assertThat(CommonDateUtils.datePlus(date, -1, Calendar.MONTH)).as("minus months").isEqualTo("1999-12-01T00:00:00.000");
         assertThat(CommonDateUtils.datePlus(date, -3, Calendar.DAY_OF_MONTH)).as("minus days").isEqualTo("1999-12-29T00:00:00.000");
+    }
+    
+    @Test
+    public void dateMinus() {
+        Date date = CommonDateUtils.dateOf(2000, 1, 1);
+
+        assertThat(CommonDateUtils.dateMinus(date, 1, Calendar.YEAR)).isEqualTo("1999-01-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 2, Calendar.MONTH)).isEqualTo("1999-11-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 10, Calendar.DAY_OF_MONTH)).isEqualTo("1999-12-22T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 15, Calendar.HOUR_OF_DAY)).isEqualTo("1999-12-31T09:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 21, Calendar.MINUTE)).isEqualTo("1999-12-31T23:39:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 30, Calendar.SECOND)).isEqualTo("1999-12-31T23:59:30.000");
+        assertThat(CommonDateUtils.dateMinus(date, 123, Calendar.MILLISECOND)).isEqualTo("1999-12-31T23:59:59.877");
+
+        assertThat(CommonDateUtils.dateMinus(date, 13, Calendar.MONTH)).as("months overflow").isEqualTo("1998-12-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 35, Calendar.DAY_OF_MONTH)).as("days overflow").isEqualTo("1999-11-27T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, 70, Calendar.SECOND)).as("seconds overflow").isEqualTo("1999-12-31T23:58:50.000");
+
+        assertThat(CommonDateUtils.dateMinus(date, -1, Calendar.MONTH)).as("minus months").isEqualTo("2000-02-01T00:00:00.000");
+        assertThat(CommonDateUtils.dateMinus(date, -3, Calendar.DAY_OF_MONTH)).as("minus days").isEqualTo("2000-01-04T00:00:00.000");
     }
 }
