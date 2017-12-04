@@ -136,7 +136,7 @@ public class CommonDateUtilsTest {
     }
 
     @Test
-    public void dateTruncateMillisecond() {
+    public void dateTruncateSecond() {
         assertThat(CommonDateUtils.dateTruncateSecond(testDate))
             .isEqualTo(DateUtils.truncate(testDate, Calendar.SECOND))
             .isEqualTo("1999-07-23T16:31:20.000");

@@ -7,6 +7,9 @@ import java.util.Date;
  * static import friendly java.util.Date Utils
  */
 public abstract class CommonDateUtils {
+    private static final int[] TRUNCATE_ORDER = {Calendar.MILLISECOND, Calendar.SECOND, Calendar.MINUTE, Calendar.HOUR_OF_DAY, Calendar.DAY_OF_MONTH, Calendar.MONTH};
+    private static final int[] TRUNCATE_VALUE = {0, 0, 0, 0, 1, Calendar.JANUARY};
+
     /**
      * create {@link java.util.Date} object with given data.
      *
@@ -234,86 +237,43 @@ public abstract class CommonDateUtils {
     }
 
     public static Date dateTruncateSecond(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar.getTime();
+        return doTruncate(date, Calendar.MILLISECOND);
     }
 
     public static Date dateTruncateMinute(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        return calendar.getTime();
+        return doTruncate(date, Calendar.SECOND);
     }
 
 
     public static Date dateTruncateHour(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        return calendar.getTime();
+        return doTruncate(date, Calendar.MINUTE);
     }
 
 
     public static Date dateTruncateDayOfMonth(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        return calendar.getTime();
+        return doTruncate(date, Calendar.HOUR_OF_DAY);
     }
 
 
     public static Date dateTruncateMonth(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        return calendar.getTime();
+        return doTruncate(date, Calendar.DAY_OF_MONTH);
     }
 
     public static Date dateTruncateYear(Date date) {
+        return doTruncate(date, Calendar.MONTH);
+    }
+
+    private static Date doTruncate(Date date, int field) {
         if (date == null) {
             return null;
         }
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+
+        for (int targetFieldIndex = 0; targetFieldIndex < TRUNCATE_ORDER.length && TRUNCATE_ORDER[targetFieldIndex] >= field; targetFieldIndex++) {
+            calendar.set(TRUNCATE_ORDER[targetFieldIndex], TRUNCATE_VALUE[targetFieldIndex]);
+        }
         return calendar.getTime();
     }
 }
