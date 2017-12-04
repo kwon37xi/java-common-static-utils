@@ -1,5 +1,7 @@
 package kr.pe.kwonnam.java_commons_static_utils.lang;
 
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -8,6 +10,16 @@ import java.util.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CommonDateUtilsTest {
+    private Date testDate;
+
+    @Before
+    public void setUp() throws Exception {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1999, Calendar.JULY, 23, 16, 31, 20);
+        calendar.set(Calendar.MILLISECOND, 123);
+        testDate = calendar.getTime();
+    }
+
     @Test
     public void dateOf() throws Exception {
         assertThat(CommonDateUtils.dateOf(2017)).isEqualTo("2017-01-01T00:00:00.000");
@@ -121,5 +133,59 @@ public class CommonDateUtilsTest {
     @Test
     public void dateMinus_null_for_null() {
         assertThat(CommonDateUtils.dateMinus(null, 1, Calendar.YEAR)).isNull();
+    }
+
+    @Test
+    public void dateTruncateMillisecond() {
+        assertThat(CommonDateUtils.dateTruncateSecond(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.SECOND))
+            .isEqualTo("1999-07-23T16:31:20.000");
+
+        assertThat(CommonDateUtils.dateTruncateSecond(null)).isNull();
+    }
+
+    @Test
+    public void dateTruncateMinute() {
+        assertThat(CommonDateUtils.dateTruncateMinute(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.MINUTE))
+            .isEqualTo("1999-07-23T16:31:00.000");
+
+        assertThat(CommonDateUtils.dateTruncateSecond(null)).isNull();
+    }
+
+    @Test
+    public void dateTruncateHour() {
+        assertThat(CommonDateUtils.dateTruncateHour(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.HOUR))
+            .isEqualTo("1999-07-23T16:00:00.000");
+
+        assertThat(CommonDateUtils.dateTruncateHour(null)).isNull();
+    }
+
+    @Test
+    public void dateTruncateDayOfDayOfMonth() {
+        assertThat(CommonDateUtils.dateTruncateDayOfMonth(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.DAY_OF_MONTH))
+            .isEqualTo("1999-07-23T00:00:00.000");
+
+        assertThat(CommonDateUtils.dateTruncateDayOfMonth(null)).isNull();
+    }
+
+    @Test
+    public void dateTruncateMonth() {
+        assertThat(CommonDateUtils.dateTruncateMonth(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.MONTH))
+            .isEqualTo("1999-07-01T00:00:00.000");
+
+        assertThat(CommonDateUtils.dateTruncateMonth(null)).isNull();
+    }
+
+    @Test
+    public void dateTruncateYear() {
+        assertThat(CommonDateUtils.dateTruncateYear(testDate))
+            .isEqualTo(DateUtils.truncate(testDate, Calendar.YEAR))
+            .isEqualTo("1999-01-01T00:00:00.000");
+
+        assertThat(CommonDateUtils.dateTruncateYear(null)).isNull();
     }
 }
