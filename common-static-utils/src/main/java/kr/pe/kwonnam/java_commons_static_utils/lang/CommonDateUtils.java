@@ -249,11 +249,9 @@ public abstract class CommonDateUtils {
         return doTruncate(date, Calendar.MINUTE);
     }
 
-
     public static Date dateTruncateDayOfMonth(Date date) {
         return doTruncate(date, Calendar.HOUR_OF_DAY);
     }
-
 
     public static Date dateTruncateMonth(Date date) {
         return doTruncate(date, Calendar.DAY_OF_MONTH);
