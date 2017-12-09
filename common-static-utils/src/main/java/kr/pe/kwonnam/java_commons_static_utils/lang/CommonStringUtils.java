@@ -5,29 +5,26 @@ package kr.pe.kwonnam.java_commons_static_utils.lang;
  */
 public abstract class CommonStringUtils {
 
-    /**
-     * null safe trim.
-     *
-     * @param str string to trim
-     * @return if str is null return null or trim the str
-     */
-    public static String strTrim(String str) {
+    public static boolean strIsEmpty(CharSequence str) {
         if (str == null) {
-            return null;
+            return true;
         }
 
-        return str.trim();
-    }
-
-    public static boolean strIsEmpty(String str) {
-        return false;
+        return str.length() == 0;
     }
 
     public static boolean strIsBlank(String str) {
-        return false;
+        if (strIsEmpty(str)) {
+            return true;
+        }
+
+        return strIsEmpty(str.trim());
     }
 
-    public static int strLength(String str) {
-        return 0;
+    public static int strLength(CharSequence str) {
+        if (str == null) {
+            return 0;
+        }
+        return str.length();
     }
 }
