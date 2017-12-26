@@ -23,6 +23,8 @@ subprojects {
         testCompile "junit:junit:4.12"
         testCompile 'org.assertj:assertj-core:2.8.0'
         testCompile 'org.apache.commons:commons-lang3:3.7'
+        testCompile 'org.apache.commons:commons-collections4:4.1'
+
     }
 
     compileJava.options.compilerArgs = ['-Xlint:unchecked',"-Xlint:deprecation"]
