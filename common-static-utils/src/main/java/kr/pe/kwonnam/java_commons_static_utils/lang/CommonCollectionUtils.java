@@ -11,4 +11,13 @@ public abstract class CommonCollectionUtils {
 
         return collection.isEmpty();
     }
+
+    public static boolean collectionContainsAll(Collection<?> collection1, Collection<?> collection2) {
+        return false; //TODO
+    }
+
+
+    public static boolean collectionContainsAny(Collection<?> collection1, Collection<?> collection2) {
+        return false; //TODO
+    }
 }
