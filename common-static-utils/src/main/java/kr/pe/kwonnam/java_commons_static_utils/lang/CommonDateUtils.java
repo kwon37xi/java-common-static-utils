@@ -89,7 +89,6 @@ public abstract class CommonDateUtils {
         return dateOf(year, month, dayOfMonth, hour, minute, second, 0);
     }
 
-
     /**
      * create {@link java.util.Date} object with given data.
      *
